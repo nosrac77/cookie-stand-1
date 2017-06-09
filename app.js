@@ -6,6 +6,13 @@ var pike = {
   avgCookie: 6.3
 };
 
+function randomCust(custMin, custMax){
+  return Math.floor(Math.random() * (custMax - custMin)) + custMin;
+}
+randomCust();
+
+
+
 var seaTac = {
   custMin: 3,
   custMax: 24,
