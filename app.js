@@ -25,11 +25,8 @@ function pushToSales(store){
   sectionEl.appendChild(headingEl);
   headingEl.textContent = store.location;
 
-  var paragraphEl = document.createElement('p');
-  headingEl.appendChild(paragraphEl);
-
   var unorderedListEl = document.createElement('ul');
-  paragraphEl.appendChild(unorderedListEl);
+  sectionEl.appendChild(unorderedListEl);
 
   for(var i = 0; i < store.hoursopen.length; i++){
     var listItemEl = document.createElement('li');
