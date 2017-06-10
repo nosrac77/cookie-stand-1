@@ -19,12 +19,17 @@ function perHour(store){
 // function();?
 function pushToSales(store){
   var unorderedListEl = document.getElementById('cookieSales');
-  for(var i = 0; i <= store.hoursopen.length; i++){
+  for(var i = 0; i < store.hoursopen.length; i++){
     var listItemEl = document.createElement('li');
     unorderedListEl.appendChild(listItemEl);
     listItemEl.textContent = store.cookiePerHour[i];
   };
 }
+
+// function allLocations(store){
+//   perHour(store);
+//   pushToSales(store);
+// }
 
 var pike = {
   custMin: 23,
