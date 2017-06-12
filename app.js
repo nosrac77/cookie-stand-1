@@ -22,24 +22,40 @@ function perHour(store){
   console.log(store.cookiePerHour);
 }
 
-/*I want change the code below so that it creates a table instead of a list. */
-// function();?
-function pushToSales(store){
-  var sectionEl = document.createElement('section');
-  document.body.appendChild(sectionEl);
+var tableEl = document.createElement('table');
+document.body.appendChild(tableEl);
 
-  var tableEl = document.createElement('table');
-  sectionEl.appendChild(tableEl);
+function putInHours(){
+  var hours = [' ', '6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm', '8pm'];
 
   var tableRowEl = document.createElement('tr');
-  // var unorderedListEl = document.createElement('ul');
-  // sectionEl.appendChild(unorderedListEl);
-  //
-  // for(var i = 0; i < store.hoursOpen.length; i++){
-  //   var listItemEl = document.createElement('li');
-  //   unorderedListEl.appendChild(listItemEl);
-  //   listItemEl.textContent = store.cookiePerHour[i];
-  // };
+  tableEl.appendChild(tableRowEl);
+
+  for(var i = 0; i <= hours.length; i++){
+    var tableDataEl = document.createElement('td');
+    tableRowEl.appendChild(tableDataEl);
+    tableDataEl.textContent = hours[i];
+  };
+}
+
+// var tableRowEl = document.createElement('tr');
+// tableEl.appendChild(tableRowEl);
+// tableDataEl.textContent = //I want to put the hoursOpen here...figure out how.
+
+/*I want change the code below so that it creates a table instead of a list. */
+function pushToSales(store){
+  var tableRowEl = document.createElement('tr');
+  tableEl.appendChild(tableRowEl);
+
+  var tableDataEl = document.createElement('td');
+  tableRowEl.appendChild(tableDataEl);
+  tableDataEl.textContent = store.location;
+
+  for(var i = 0; i < store.hoursOpen.length; i++){
+    var tableDataEl = document.createElement('td');
+    tableRowEl.appendChild(tableDataEl);
+    tableDataEl.textContent = store.cookiePerHour[i];
+  };
 }
 
 function loopStores(){
@@ -71,4 +87,5 @@ var alki = new locations('Alki', 2, 16, 4.6, []);
 var storeObjects = [pike, seaTac, seattleCenter, capitolHill, alki];
 // console.log(storeObjects);
 
+putInHours();
 loopStores();
