@@ -1,37 +1,60 @@
 'use strict';
 
+
+
+/*I want to create a function that will push an array of hoursOpen into an object constructor so i dont have to do it for each store. */
+
+/*I want to take randomCount and multiply it by avgCookie 15 times (for 15 hours) and push the product into the cookiePerHour array within each store object.*/
+
+var tableEl = document.createElement('table');
+document.body.appendChild(tableEl);
+
 function randomCust(min, max){
   var randomCount = Math.floor(Math.random() * (max + 1 - min)) + min;
   // console.log(randomCount);
   return randomCount;
 }
 
-/*I want to take randomCount and multiply it by avgCookie 15 times (for 15 hours) and push the product into the cookiePerHour array within each store object.*/
+function pushHoursOpen(store){
+  for(var i = 1; i < storeObjects.length; i++){
+  store.hoursOpen = ['6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm', '8pm'];
+  }
+}
+
 function perHour(store){
-  for(var i = 1; i <= store.hoursopen.length; i++){
+  for(var i = 1; i <= store.hoursOpen.length; i++){
     var cookies = store.cookiePerHour.push(randomCust(store.custMin, store.custMax) * Math.floor(store.avgCookie));
     // console.log(cookies);
   };
   console.log(store.cookiePerHour);
 }
 
-/*I want to get the <ul> element on my sales.html page by ID and push the array I just made in each of my stores into an unordered list on the browser */
-// function();?
+function putInHours(){
+  var hours = [' ', '6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm', '8pm'];
+
+  var tableRowEl = document.createElement('tr');
+  tableEl.appendChild(tableRowEl);
+
+  for(var i = 0; i <= hours.length; i++){
+    var tableDataEl = document.createElement('td');
+    tableRowEl.appendChild(tableDataEl);
+    tableDataEl.textContent = hours[i];
+  };
+}
+
+/*I want change the code below so that it creates a table instead of a list. */
 function pushToSales(store){
-  var sectionEl = document.createElement('section');
-  document.body.appendChild(sectionEl);
+  var tableRowEl = document.createElement('tr');
+  tableEl.appendChild(tableRowEl);
 
-  var headingEl = document.createElement('h2');
-  sectionEl.appendChild(headingEl);
-  headingEl.textContent = store.location;
+  var tableDataEl = document.createElement('td');
+  tableRowEl.appendChild(tableDataEl);
+  tableDataEl.textContent = store.location;
 
-  var unorderedListEl = document.createElement('ul');
-  sectionEl.appendChild(unorderedListEl);
-
-  for(var i = 0; i < store.hoursopen.length; i++){
-    var listItemEl = document.createElement('li');
-    unorderedListEl.appendChild(listItemEl);
-    listItemEl.textContent = store.cookiePerHour[i];
+  for(var i = 0; i < store.hoursOpen.length; i++){
+    var tableDataEl = document.createElement('td');
+    tableRowEl.appendChild(tableDataEl);
+    tableDataEl.textContent = store.cookiePerHour[i];
   };
 }
 
@@ -42,56 +65,27 @@ function loopStores(){
 }
 
 function allLocations(store){
+  pushHoursOpen(store);
   perHour(store);
   pushToSales(store);
 }
 
-var pike = {
-  location: '1st and Pike',
-  custMin: 23,
-  custMax: 65,
-  avgCookie: 6.3,
-  cookiePerHour: [],
-  hoursopen: ['6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm', '8pm']
-};
-
-var seaTac = {
-  location: 'SeaTac Airport',
-  custMin: 3,
-  custMax: 24,
-  avgCookie: 1.2,
-  cookiePerHour: [],
-  hoursopen: ['6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm', '8pm']
+function locations(location, custMin, custMax, avgCookie, cookiePerHour, hoursOpen){
+  this.location = location;
+  this.custMin = custMin;
+  this.custMax = custMax;
+  this.avgCookie = avgCookie;
+  this.cookiePerHour = [];
 }
 
-var seattleCenter = {
-  location: 'Seattle Center',
-  custMin: 11,
-  custMax: 38,
-  avgCookie: 3.7,
-  cookiePerHour: [],
-  hoursopen: ['6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm', '8pm']
-};
-
-var capitolHill = {
-  location: 'Capitol Hill',
-  custMin: 20,
-  custMax: 38,
-  avgCookie: 2.3,
-  cookiePerHour: [],
-  hoursopen: ['6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm', '8pm']
-};
-
-var alki = {
-  location: 'Alki',
-  custMin: 2,
-  custMax: 16,
-  avgCookie: 4.6,
-  cookiePerHour: [],
-  hoursopen: ['6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm', '8pm']
-};
+var pike = new locations('1st and Pike', 23, 65, 6.3, []);
+var seaTac = new locations('SeaTac Airport', 3, 24, 1.2, []);
+var seattleCenter = new locations('Seattle Center', 11, 38, 3.7, []);
+var capitolHill = new locations('Capitol Hill', 20, 38, 2.3, []);
+var alki = new locations('Alki', 2, 16, 4.6, []);
 
 var storeObjects = [pike, seaTac, seattleCenter, capitolHill, alki];
 // console.log(storeObjects);
 
+putInHours();
 loopStores();
