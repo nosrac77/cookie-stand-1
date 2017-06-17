@@ -17,14 +17,13 @@ function randomCust(min, max){
 
 function pushHoursOpen(store){
   for(var i = 1; i < storeObjects.length; i++){
-  store.hoursOpen = ['6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm', '8pm'];
+    store.hoursOpen = ['6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm', '8pm'];
   }
 }
 
 function perHour(store){
   for(var i = 1; i <= store.hoursOpen.length; i++){
-    var cookies = store.cookiePerHour.push(randomCust(store.custMin, store.custMax) * Math.floor(store.avgCookie));
-    // console.log(cookies);
+    store.cookiePerHour.push(randomCust(store.custMin, store.custMax) * Math.floor(store.avgCookie));
   };
   console.log(store.cookiePerHour);
 }
@@ -52,9 +51,9 @@ function pushToSales(store){
   tableDataEl.textContent = store.location;
 
   for(var i = 0; i < store.hoursOpen.length; i++){
-    var tableDataEl = document.createElement('td');
-    tableRowEl.appendChild(tableDataEl);
-    tableDataEl.textContent = store.cookiePerHour[i];
+    var cookieDataEl = document.createElement('td');
+    tableRowEl.appendChild(cookieDataEl);
+    cookieDataEl.textContent = store.cookiePerHour[i];
   };
 }
 
@@ -70,7 +69,7 @@ function allLocations(store){
   pushToSales(store);
 }
 
-function locations(location, custMin, custMax, avgCookie, cookiePerHour, hoursOpen){
+function Locations(location, custMin, custMax, avgCookie){
   this.location = location;
   this.custMin = custMin;
   this.custMax = custMax;
@@ -78,11 +77,11 @@ function locations(location, custMin, custMax, avgCookie, cookiePerHour, hoursOp
   this.cookiePerHour = [];
 }
 
-var pike = new locations('1st and Pike', 23, 65, 6.3, []);
-var seaTac = new locations('SeaTac Airport', 3, 24, 1.2, []);
-var seattleCenter = new locations('Seattle Center', 11, 38, 3.7, []);
-var capitolHill = new locations('Capitol Hill', 20, 38, 2.3, []);
-var alki = new locations('Alki', 2, 16, 4.6, []);
+var pike = new Locations('1st and Pike', 23, 65, 6.3, []);
+var seaTac = new Locations('SeaTac Airport', 3, 24, 1.2, []);
+var seattleCenter = new Locations('Seattle Center', 11, 38, 3.7, []);
+var capitolHill = new Locations('Capitol Hill', 20, 38, 2.3, []);
+var alki = new Locations('Alki', 2, 16, 4.6, []);
 
 var storeObjects = [pike, seaTac, seattleCenter, capitolHill, alki];
 // console.log(storeObjects);
